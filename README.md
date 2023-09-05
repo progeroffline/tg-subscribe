@@ -59,7 +59,7 @@ Before running the bot, you need to configure the following parameters:
 
 2. Edit the `.env-dist` file, specifying the obtained token and other settings if necessary:
     ```env
-    TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
+    BOT_TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
     ```
 3. Rename the `.env-dist` file to `.env`.
 
