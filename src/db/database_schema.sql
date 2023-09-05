@@ -4,12 +4,13 @@ CREATE TABLE IF NOT EXISTS "Users" (
 	"first_name"	TEXT,
 	"last_name"	TEXT,
 	"username"	TEXT,
-	"days_sub_end"	TEXT,
+	"days_sub_end"	INTEGER,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
 
-CREATE TABLE IF NOT EXISTS "Payments" (
+CREATE TABLE IF NOT EXISTS "Transactions" (
 	"id"	INTEGER,
 	"txid"	TEXT,
+	"status" BOOLEAN,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
