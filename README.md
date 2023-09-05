@@ -1,6 +1,6 @@
 # Telegram Bot with Subscribing 🤖
 
-This repository contains the source code for a Telegram bot written in Python using the aiogram framework version 2 and an asynchronous SQLite3 wrapper called aiosqlite. This bot provides the ability to manage various functions through Telegram. 🤖📱
+This repository contains the source code for a Telegram bot designed to create subscription functionality. Whether you want to manage subscriptions, deliver timely updates, or engage with your audience, this bot, written in Python using the aiogram framework version 2 and an asynchronous SQLite3 wrapper called aiosqlite, has got you covered. 🤖📱
 
 ## Project Structure 📂
 
