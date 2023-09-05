@@ -1,8 +1,8 @@
-# Telegram Bot with Subscribing
+# Telegram Bot with Subscribing 🤖
 
-This repository contains the source code for a Telegram bot written in Python using the aiogram framework version 2 and an asynchronous SQLite3 wrapper called aiosqlite. This bot provides the ability to manage various functions through Telegram.
+This repository contains the source code for a Telegram bot written in Python using the aiogram framework version 2 and an asynchronous SQLite3 wrapper called aiosqlite. This bot provides the ability to manage various functions through Telegram. 🤖📱
 
-## Project Structure
+## Project Structure 📂
 
 ```
 .
@@ -11,22 +11,22 @@ This repository contains the source code for a Telegram bot written in Python us
 ├── requirements.txt
 └── src
     ├── bot
-    │   ├── app.py
-    │   ├── data
-    │   ├── database
-    │   ├── handlers
-    │   ├── keyboards
-    │   ├── loader.py
-    │   ├── logs
-    │   ├── middlewares
-    │   ├── __pycache__
-    │   ├── statesgroup.py
-    │   └── utils
+    │   ├── app.py
+    │   ├── data
+    │   ├── database
+    │   ├── handlers
+    │   ├── keyboards
+    │   ├── loader.py
+    │   ├── logs
+    │   ├── middlewares
+    │   ├── __pycache__
+    │   ├── statesgroup.py
+    │   └── utils
     └── db
         └── database_schema.sql
 ```
 
-## Installation
+## Installation 🚀
 
 Before running the bot, make sure you have Python 3.8+ installed and follow these steps:
 
@@ -51,7 +51,7 @@ Before running the bot, make sure you have Python 3.8+ installed and follow thes
    pip install -r requirements.txt
    ```
 
-## Configuration
+## Configuration ⚙️
 
 Before running the bot, you need to configure the following parameters:
 
@@ -60,10 +60,10 @@ Before running the bot, you need to configure the following parameters:
 2. Edit the `config.py` file, specifying the obtained token and other settings if necessary:
    ```python
    TOKEN = 'your_token'
-   DATABASE = 'база_данных.db'
+   DATABASE = 'database.db'
    ```
 
-## Running
+## Running ▶️
 
 After configuring, you can start the bot with the following command:
 ```shell
@@ -72,6 +72,6 @@ python app.py
 
 The bot will be active and ready to handle commands and user requests on Telegram.
 
-## Usage
+## Usage 📝
 
-This bot provides various commands and functions for interacting with users on Telegram. You can add your own commands and functions by editing the `handlers.py` file according to the aiogram and aiosqlite documentation.
+This bot provides various commands and functions for interacting with users on Telegram. You can add your own commands and functions by editing the `handlers.py` file according to the aiogram and aiosqlite documentation. 😊👍
