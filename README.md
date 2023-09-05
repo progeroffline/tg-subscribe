@@ -46,7 +46,12 @@ Before running the bot, make sure you have Python 3.8+ installed and follow thes
    source venv/bin/activate
    ```
 
-4. Install the dependencies listed in the `requirements.txt` file:
+4. Upgrade pip in environment:
+   ```shell
+   pip3 install --upgrade pip
+   ```
+
+5. Install the dependencies listed in the `requirements.txt` file:
    ```shell
    pip install -r requirements.txt
    ```
@@ -67,7 +72,8 @@ Before running the bot, you need to configure the following parameters:
 
 After configuring, you can start the bot with the following command:
 ```shell
-python app.py
+cd src/bot/
+python3 app.py
 ```
 
 The bot will be active and ready to handle commands and user requests on Telegram.
