@@ -19,7 +19,6 @@ This repository contains the source code for a Telegram bot designed to create s
     │   ├── loader.py
     │   ├── logs
     │   ├── middlewares
-    │   ├── __pycache__
     │   ├── statesgroup.py
     │   └── utils
     └── db
