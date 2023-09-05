@@ -6,6 +6,7 @@ This repository contains the source code for a Telegram bot written in Python us
 
 ```
 .
+├── .env-dist
 ├── README.md
 ├── requirements.txt
 └── src
