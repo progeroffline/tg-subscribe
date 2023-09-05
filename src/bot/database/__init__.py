@@ -13,5 +13,5 @@ async def get_database_schema_sql():
 async def create_schema_if_not_exist():
     database_schema_sql = await get_database_schema_sql()
     async with aiosqlite.connect(sqlite_database_filepath) as connection: 
-        await connection.execute(database_schema_sql)
+        await connection.executescript(database_schema_sql)
         await connection.commit()
