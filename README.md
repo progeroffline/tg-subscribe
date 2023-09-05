@@ -4,7 +4,7 @@ This repository contains the source code for a Telegram bot written in Python us
 
 ## Project Structure 📂
 
-```
+```css
 .
 ├── .env-dist
 ├── README.md
@@ -57,11 +57,11 @@ Before running the bot, you need to configure the following parameters:
 
 1. Create a bot on Telegram and obtain its token from BotFather.
 
-2. Edit the `config.py` file, specifying the obtained token and other settings if necessary:
-   ```python
-   TOKEN = 'your_token'
-   DATABASE = 'database.db'
-   ```
+2. Edit the `.env-dist` file, specifying the obtained token and other settings if necessary:
+    ```env
+    TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
+    ```
+3. Rename the `.env-dist` file to `.env`.
 
 ## Running ▶️
 
