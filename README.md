@@ -24,17 +24,7 @@ This Telegram bot already includes a fundamental subscription system, complete w
 
 The payment verification process ensures that users have paid the required subscription amount in USDT TRC20. This is achieved by utilizing the `USDT_TRC20_WALLET_ADDRESS` and `SUBSCRIBE_AMOUNT_IN_USDT_TRC20` variables defined in the `config.py` file.
 
-To verify payments, you can refer to the code in `payment.py`. This code checks whether a user has made a payment of at least the specified amount in USDT TRC20 to the designated wallet address. Users who have paid are considered subscribed, while those who haven't paid or paid insufficiently are treated as non-subscribed.
-
-### Handling User Subscriptions
-
-In the `utils` module, you can find functions and utilities related to handling user subscriptions. These functions enable you to:
-
-- Check a user's subscription status.
-- Manage the renewal of subscriptions based on the `NUMBER_DAYS_FROM_ONE_PAYMENT` variable.
-- Customize user interactions based on their subscription status.
-
-By using these utilities in your bot's code, you can ensure that users have access to certain features or content only if they are subscribed. This gives you fine-grained control over the user experience and helps you create a subscription-based service.
+To verify payments, you can refer to the code in `utils/subscription_checker.py`. This code checks whether a user has made a payment of at least the specified amount in USDT TRC20 to the designated wallet address. Users who have paid are considered subscribed, while those who haven't paid or paid insufficiently are treated as non-subscribed.
 
 ## Project Structure
 
