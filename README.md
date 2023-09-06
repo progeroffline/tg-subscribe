@@ -20,7 +20,6 @@ This repository contains the source code for a Telegram bot designed to create s
     │   ├── loader.py
     │   ├── logs
     │   ├── middlewares
-    │   ├── __pycache__
     │   ├── statesgroup.py
     │   └── utils
     └── db
@@ -78,7 +77,55 @@ python3 app.py
 ```
 
 The bot will be active and ready to handle commands and user requests on Telegram.
+Of course, here's the complete text with the added information about the config file:
+
+Of course, here's the complete text with the added information:
 
 ## Usage 📝
 
-This bot provides various commands and functions for interacting with users on Telegram. You can add your own commands and functions by editing the `handlers.py` file according to the aiogram and aiosqlite documentation. 😊👍
+### Configuration File 🛠️
+
+To configure specific aspects of your bot's behavior, you can utilize the `config.py` file located in the `src/bot/data/` directory. This file includes the following variables:
+
+```python
+# USDT TRC20 wallet address used for transactions
+USDT_TRC20_WALLET_ADDRESS = 'TF8aSMqpwtniPN77wS2EZTTcUKaaJhyorb'
+
+# Amount in USDT TRC20 required for subscription
+SUBSCRIBE_AMOUNT_IN_USDT_TRC20 = 5
+
+# Number of days between each payment for subscription
+NUMBER_DAYS_FROM_ONE_PAYMENT = 30
+```
+
+You can utilize these variables in your code to tailor your Telegram bot's behavior in accordance with the specified values.
+
+### Handling User Subscription 🤖
+
+In the `handlers` module located at `src/bot/handlers/`, you have the flexibility to create your own `*.py` files and import them into your bot by editing the `__init__.py` file as follows:
+
+```python
+# -*- coding: utf-8 -*-
+
+from .start import *
+from .payment import *
+```
+
+Within any of your handler files, you can implement filters to determine whether a user is subscribed or not. Here's an example:
+
+```python
+# -*- coding: utf-8 -*-
+
+from filters.user_not_subscribed import UserNotSubscribedFilter
+from filters.user_subscribed import UserSubscribedFilter
+
+# Start command for subscribed users
+@dp.message_handler(UserSubscribedFilter(), commands=['start'], state="*")
+...
+
+# Same command, but for users who are not subscribed
+@dp.message_handler(UserNotSubscribedFilter(), commands=['start'], state="*")
+...
+```
+
+This allows you to handle messages differently based on whether a user is subscribed or not, providing greater flexibility in your bot's behavior.
