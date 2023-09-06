@@ -23,14 +23,16 @@ class User:
 
 
 @dataclasses.dataclass()
-class Payment:
+class Transaction:
     id: int
     txid: str
+    owner_telegram_id: int
+    status: bool
     
     @staticmethod
     def get_fields_for_sql_query():
-        return '(%s)' % ', '.join([ field.name for field in dataclasses.fields(Payment) ][1:])
+        return '(%s)' % ', '.join([ field.name for field in dataclasses.fields(Transaction) ][1:])
         
     @staticmethod
     def get_table_name():
-        return 'Users'
+        return 'Transactions'
