@@ -1,8 +1,42 @@
-# Telegram Bot with Subscribing 🤖
+# Telegram Bot with Subscription Functionality 🤖
 
-This repository contains the source code for a Telegram bot designed to create subscription functionality. Whether you want to manage subscriptions, deliver timely updates, or engage with your audience, this bot, written in Python using the aiogram framework version 2 and an asynchronous SQLite3 wrapper called aiosqlite, has got you covered. 🤖📱
+- [Introduction](#introduction)
+- [Basic Subscription Functionality 📋](#basic-subscription-functionality)
+  - [Payment Verification ✅](#payment-verification)
+  - [Handling User Subscriptions 🤖](#handling-user-subscriptions)
+- [Project Structure 📂](#project-structure)
+- [Installation 🚀](#installation)
+- [Configuration ⚙️](#configuration)
+- [Running ▶️](#running)
+- [Usage 📝](#usage)
+  - [Configuration File 🛠️](#configuration-file)
+  - [Handling User Subscription 🤖](#handling-user-subscription)
 
-## Project Structure 📂
+
+## Introduction
+This repository contains the source code for a Telegram bot designed to implement subscription functionality. Whether you want to manage subscriptions, deliver timely updates, or engage with your audience, this bot, written in Python using the aiogram framework version 2 and an asynchronous SQLite3 wrapper called aiosqlite, has got you covered. 🤖📱
+
+## Basic Subscription Functionality
+
+This Telegram bot already includes a fundamental subscription system, complete with subscription verification. You can review the code responsible for this functionality in the `payment.py` handlers and the `utils` module.
+
+### Payment Verification
+
+The payment verification process ensures that users have paid the required subscription amount in USDT TRC20. This is achieved by utilizing the `USDT_TRC20_WALLET_ADDRESS` and `SUBSCRIBE_AMOUNT_IN_USDT_TRC20` variables defined in the `config.py` file.
+
+To verify payments, you can refer to the code in `payment.py`. This code checks whether a user has made a payment of at least the specified amount in USDT TRC20 to the designated wallet address. Users who have paid are considered subscribed, while those who haven't paid or paid insufficiently are treated as non-subscribed.
+
+### Handling User Subscriptions
+
+In the `utils` module, you can find functions and utilities related to handling user subscriptions. These functions enable you to:
+
+- Check a user's subscription status.
+- Manage the renewal of subscriptions based on the `NUMBER_DAYS_FROM_ONE_PAYMENT` variable.
+- Customize user interactions based on their subscription status.
+
+By using these utilities in your bot's code, you can ensure that users have access to certain features or content only if they are subscribed. This gives you fine-grained control over the user experience and helps you create a subscription-based service.
+
+## Project Structure
 
 ```css
 .
@@ -26,7 +60,7 @@ This repository contains the source code for a Telegram bot designed to create s
         └── database_schema.sql
 ```
 
-## Installation 🚀
+## Installation
 
 Before running the bot, make sure you have Python 3.8+ installed and follow these steps:
 
@@ -56,7 +90,7 @@ Before running the bot, make sure you have Python 3.8+ installed and follow thes
    pip install -r requirements.txt
    ```
 
-## Configuration ⚙️
+## Configuration
 
 Before running the bot, you need to configure the following parameters:
 
@@ -68,7 +102,7 @@ Before running the bot, you need to configure the following parameters:
     ```
 3. Rename the `.env-dist` file to `.env`.
 
-## Running ▶️
+## Running 
 
 After configuring, you can start the bot with the following command:
 ```shell
@@ -81,9 +115,9 @@ Of course, here's the complete text with the added information about the config 
 
 Of course, here's the complete text with the added information:
 
-## Usage 📝
+## Usage
 
-### Configuration File 🛠️
+### Configuration File
 
 To configure specific aspects of your bot's behavior, you can utilize the `config.py` file located in the `src/bot/data/` directory. This file includes the following variables:
 
@@ -100,7 +134,7 @@ NUMBER_DAYS_FROM_ONE_PAYMENT = 30
 
 You can utilize these variables in your code to tailor your Telegram bot's behavior in accordance with the specified values.
 
-### Handling User Subscription 🤖
+### Handling User Subscription
 
 In the `handlers` module located at `src/bot/handlers/`, you have the flexibility to create your own `*.py` files and import them into your bot by editing the `__init__.py` file as follows:
 
