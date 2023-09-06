@@ -2,4 +2,6 @@
 
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
-get_txid_from_user = State()
+
+class GetTxidFromUser(StatesGroup):
+    state = State()

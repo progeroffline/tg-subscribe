@@ -44,11 +44,9 @@ async def create_if_not_exist(telegram_id: int,
                               firstname: str,
                               lastname: str,
                               username: str) -> None:
-    print('Run function')
     record = await get(telegram_id=telegram_id)
     if record is None:
         async with aiosqlite.connect(sqlite_database_filepath) as connection:
-            print('Create user')
             await connection.execute("""
                     INSERT INTO %s
                         %s

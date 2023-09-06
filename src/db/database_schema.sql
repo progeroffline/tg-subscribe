@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS "Users" (
 CREATE TABLE IF NOT EXISTS "Transactions" (
 	"id"	INTEGER,
 	"txid"	TEXT,
+	"owner_telegram_id" INTEGER,
 	"status" BOOLEAN,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );

@@ -26,6 +26,7 @@ class User:
 class Transaction:
     id: int
     txid: str
+    owner_telegram_id: int
     status: bool
     
     @staticmethod
