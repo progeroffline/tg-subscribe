@@ -7,7 +7,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from data.config import BOT_TOKEN
 from logzero import logfile, logger
-from utils import subscription_checker
+from utils import decrease_subscription_days, subscription_checker
 
 if not os.path.exists('logs/'):
     os.system('mkdir logs')
@@ -19,3 +19,4 @@ dp = Dispatcher(bot=bot, storage=storage)
 
 tasks_scheduler = AsyncIOScheduler()
 tasks_scheduler.add_job(subscription_checker.task, 'interval', minutes=1, args=(bot, ))
+tasks_scheduler.add_job(decrease_subscription_days.task, 'interval', days=1)

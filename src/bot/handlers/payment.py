@@ -37,7 +37,7 @@ async def check_transaction(message: types.Message, state: FSMContext):
     
     if transaction is None and tronscan_service.is_valid_transaction_hash(message.text):
         await state.finish()
-        await transactions.create(message.text)
+        await transactions.create(message.text, message.from_user.id)
         await message.answer(
             text='Great, wait for the end of the transaction, '
                  'and I will notify you when the subscription is charged.',

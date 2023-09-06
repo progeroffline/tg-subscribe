@@ -20,3 +20,4 @@ sqlite_schema_filepath = os.path.join(project_filepath, 'db', schema_filename)
 
 USDT_TRC20_WALLET_ADDRESS = 'TF8aSMqpwtniPN77wS2EZTTcUKaaJhyorb'
 SUBSCRIBE_AMOUNT_IN_USDT_TRC20 = 5
+NUMBER_DAYS_FROM_ONE_PAYMENT = 30

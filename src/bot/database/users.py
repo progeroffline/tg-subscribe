@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from typing import Optional, Union
+from typing import List, Optional, Union
 
 import aiosqlite
 from data.config import sqlite_database_filepath
@@ -32,7 +32,7 @@ async def set_days_sub_end(count_days: int,
     if user is None: return None
     
     async with aiosqlite.connect(sqlite_database_filepath) as connection:
-        sql_query = "UPDATE %s SET set_days_sub_end=%s WHERE id=%s" % (
+        sql_query = "UPDATE %s SET days_sub_end=%s WHERE id=%s" % (
             User.get_table_name(), count_days, user.id,
         )
         
@@ -59,3 +59,13 @@ async def create_if_not_exist(telegram_id: int,
                 telegram_id, firstname, lastname, username, 0,
             ))
             await connection.commit()
+
+
+async def get_all() -> List[User]:
+    async with aiosqlite.connect(sqlite_database_filepath) as connection:
+        sql_query = "SELECT * FROM %s" % User.get_table_name()
+        
+        cursor = await connection.execute(sql_query) 
+        rows = await cursor.fetchall()
+        
+        return [ User(*row) for row in rows ]   
