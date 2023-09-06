@@ -11,16 +11,18 @@ This repository contains the source code for a Telegram bot designed to create s
 ├── requirements.txt
 └── src
     ├── bot
-    │   ├── app.py
-    │   ├── data
-    │   ├── database
-    │   ├── handlers
-    │   ├── keyboards
-    │   ├── loader.py
-    │   ├── logs
-    │   ├── middlewares
-    │   ├── statesgroup.py
-    │   └── utils
+    │   ├── app.py
+    │   ├── data
+    │   ├── database
+    │   ├── filters
+    │   ├── handlers
+    │   ├── keyboards
+    │   ├── loader.py
+    │   ├── logs
+    │   ├── middlewares
+    │   ├── __pycache__
+    │   ├── statesgroup.py
+    │   └── utils
     └── db
         └── database_schema.sql
 ```
