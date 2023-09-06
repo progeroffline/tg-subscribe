@@ -1,5 +1,9 @@
 # Telegram Bot with Subscription Functionality 🤖
 
+***Documentation***:
+ - 🇺🇸 [English](https://github.com/ProgerOffline/tg-subscribe/blob/main/README.md)
+ - 🇺🇦 [Ukrainian](https://github.com/ProgerOffline/tg-subscribe/blob/main/README-ua.md)
+---
 - [Introduction](#introduction)
   - [Basic Subscription Functionality 📋](#basic-subscription-functionality)
   - [Payment Verification ✅](#payment-verification)
