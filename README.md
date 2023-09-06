@@ -1,7 +1,7 @@
 # Telegram Bot with Subscription Functionality 🤖
 
 - [Introduction](#introduction)
-- [Basic Subscription Functionality 📋](#basic-subscription-functionality)
+  - [Basic Subscription Functionality 📋](#basic-subscription-functionality)
   - [Payment Verification ✅](#payment-verification)
   - [Handling User Subscriptions 🤖](#handling-user-subscriptions)
 - [Project Structure 📂](#project-structure)
@@ -16,7 +16,7 @@
 ## Introduction
 This repository contains the source code for a Telegram bot designed to implement subscription functionality. Whether you want to manage subscriptions, deliver timely updates, or engage with your audience, this bot, written in Python using the aiogram framework version 2 and an asynchronous SQLite3 wrapper called aiosqlite, has got you covered. 🤖📱
 
-## Basic Subscription Functionality
+### Basic Subscription Functionality
 
 This Telegram bot already includes a fundamental subscription system, complete with subscription verification. You can review the code responsible for this functionality in the `payment.py` handlers and the `utils` module.
 
