@@ -152,5 +152,3 @@ from filters.user_subscribed import UserSubscribedFilter
 @dp.message_handler(UserNotSubscribedFilter(), commands=['start'], state="*")
 ...
 ```
-
-Пожалуйста, дайте знать, если у вас есть еще какие-либо вопросы или нужна дополнительная помощь!
