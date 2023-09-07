@@ -7,8 +7,11 @@ from utils import tronscan_service
 
 async def task(bot: 'aiogram.Bot'):
    records = await transactions.get_new()
+   print(records)
    for record in records:
+      print(f'Check transaction {record.txid}')
       if await tronscan_service.check_transaction_for_correct_data(record.txid):
+         print(f'Transaction valid {record.txid}')
          await transactions.set_status(True, database_id=record.id)
          await users.set_days_sub_end(
             count_days=NUMBER_DAYS_FROM_ONE_PAYMENT,

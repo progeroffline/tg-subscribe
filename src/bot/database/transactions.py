@@ -36,8 +36,8 @@ async def create(txid: str, user_telegram_id: int) -> None:
             """ % (
             Transaction.get_table_name(),
             Transaction.get_fields_for_sql_query(),
-            user_telegram_id,
             txid,
+            user_telegram_id,
             False,
         ))
         await connection.commit()

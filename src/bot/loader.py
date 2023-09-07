@@ -18,5 +18,5 @@ storage = MemoryStorage()
 dp = Dispatcher(bot=bot, storage=storage)
 
 tasks_scheduler = AsyncIOScheduler()
-tasks_scheduler.add_job(subscription_checker.task, 'interval', minutes=1, args=(bot, ))
+tasks_scheduler.add_job(subscription_checker.task, 'interval', seconds=5, args=(bot, ))
 tasks_scheduler.add_job(decrease_subscription_days.task, 'interval', days=1)

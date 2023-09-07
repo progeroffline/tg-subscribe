@@ -32,9 +32,9 @@ async def check_transaction_for_correct_data(txid: str) -> bool:
     if transaction_trc20_data is None: return False
     transaction_trc20_data = transaction_trc20_data[0]
     
-    decimals_amount = '10' * transaction_trc20_data['decimals']
+    decimals_amount = int('1' + '0' * transaction_trc20_data['decimals'])
     transaction_amount = int(transaction_trc20_data['amount_str']) / decimals_amount
-    transaction_to_wallet = transaction_trc20_data ['to_wallet']
+    transaction_to_wallet = transaction_trc20_data['to_address']
 
     if transaction_to_wallet == USDT_TRC20_WALLET_ADDRESS \
         and transaction_amount >= SUBSCRIBE_AMOUNT_IN_USDT_TRC20 \
