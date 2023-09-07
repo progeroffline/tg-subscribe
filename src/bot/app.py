@@ -7,9 +7,9 @@ from loader import dp, tasks_scheduler
 
 
 async def on_startup(dp: Dispatcher):
+    import middlewares
     import filters
     import handlers
-    import middlewares
     
     await database_create_schema_if_not_exist()
 

@@ -6,7 +6,7 @@ from database import users
 
 
 class CreateUserMiddleware(BaseMiddleware):
-    async def on_process_message(self, message: types.Message, data: dict):
+    async def on_pre_process_message(self, message: types.Message, data: dict):
         await self._create_user_if_not_exist(
             message.from_user.id,
             message.from_user.first_name,
@@ -14,7 +14,7 @@ class CreateUserMiddleware(BaseMiddleware):
             message.from_user.username,
         )
 
-    async def on_process_callback_query(self, call: types.CallbackQuery, data: dict):
+    async def on_pre_process_callback_query(self, call: types.CallbackQuery, data: dict):
         await self._create_user_if_not_exist(
             call.from_user.id,
             call.from_user.first_name,
