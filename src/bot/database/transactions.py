@@ -31,7 +31,7 @@ async def create(txid: str, user_telegram_id: int) -> None:
                 INSERT INTO %s
                     %s
                 VALUES
-                    (%s, '%s', %s)
+                    ('%s', %s, %s)
                 ;
             """ % (
             Transaction.get_table_name(),
