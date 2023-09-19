@@ -125,6 +125,13 @@ SUBSCRIBE_AMOUNT_IN_USDT_TRC20 = 5
 
 # Number of days between each payment for subscription
 NUMBER_DAYS_FROM_ONE_PAYMENT = 30
+
+private_channels = {
+    'Channel 1': {
+        'id': -100123456789,
+        'invite_url': 'https://t.me/+ABCDEFGHIJKL'
+    },
+}
 ```
 
 You can utilize these variables in your code to tailor your Telegram bot's behavior in accordance with the specified values.
