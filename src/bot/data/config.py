@@ -24,7 +24,7 @@ NUMBER_DAYS_FROM_ONE_PAYMENT = 30
 
 private_channels = {
     'Channel 1': {
-        'id': -1001946696581,
-        'invite_url': 'https://t.me/+SCqJ2ttRQ9phZTgy'
+        'id': -100123456789,
+        'invite_url': 'https://t.me/+ABCDEFGHIJKL'
     },
 }
