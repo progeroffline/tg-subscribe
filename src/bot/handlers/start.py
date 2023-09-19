@@ -11,7 +11,7 @@ from loader import dp
 @dp.message_handler(UserSubscribedFilter(), commands=['start'], state="*")
 async def start_for_subsribed_user(message: types.Message):
     user = await users.get(telegram_id=message.from_user.id)
-    if user is None: return
+    if user is None:return
     
     await message.answer(
         text='Hello.\n' 

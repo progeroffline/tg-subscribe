@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from datetime import datetime, timedelta
 from typing import List, Optional, Union
 
 import aiosqlite
@@ -31,7 +32,7 @@ async def create(txid: str, user_telegram_id: int) -> None:
                 INSERT INTO %s
                     %s
                 VALUES
-                    ('%s', %s, %s)
+                    ('%s', %s, %s, %s)
                 ;
             """ % (
             Transaction.get_table_name(),
@@ -39,6 +40,7 @@ async def create(txid: str, user_telegram_id: int) -> None:
             txid,
             user_telegram_id,
             False,
+            int(datetime.now().timestamp()),
         ))
         await connection.commit()
        
@@ -60,7 +62,15 @@ async def set_status(status: bool,
 
 async def get_new() -> List[Transaction]:
     async with aiosqlite.connect(sqlite_database_filepath) as connection:
-        sql_query = "SELECT * FROM %s WHERE status=%s" % (Transaction.get_table_name(), False)
+        sql_query = """
+            SELECT * FROM %s
+            WHERE status=%s
+            AND created_at_timestamp >= %s
+        """ % (
+            Transaction.get_table_name(),
+            False,
+            int((datetime.now() - timedelta(minutes=20)).timestamp())
+        )
         
         cursor = await connection.execute(sql_query) 
         rows = await cursor.fetchall()

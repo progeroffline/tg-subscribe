@@ -13,5 +13,6 @@ CREATE TABLE IF NOT EXISTS "Transactions" (
 	"txid"	TEXT,
 	"owner_telegram_id" INTEGER,
 	"status" BOOLEAN,
+	"created_at_timestamp" INTEGER,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );

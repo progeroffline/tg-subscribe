@@ -21,3 +21,10 @@ sqlite_schema_filepath = os.path.join(project_filepath, 'db', schema_filename)
 USDT_TRC20_WALLET_ADDRESS = 'TF8aSMqpwtniPN77wS2EZTTcUKaaJhyorb'
 SUBSCRIBE_AMOUNT_IN_USDT_TRC20 = 5
 NUMBER_DAYS_FROM_ONE_PAYMENT = 30
+
+private_channels = {
+    'Channel 1': {
+        'id': -1001946696581,
+        'invite_url': 'https://t.me/+SCqJ2ttRQ9phZTgy'
+    },
+}

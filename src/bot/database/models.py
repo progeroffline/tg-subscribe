@@ -28,6 +28,7 @@ class Transaction:
     txid: str
     owner_telegram_id: int
     status: bool
+    created_at_timestamp: int
     
     @staticmethod
     def get_fields_for_sql_query():
