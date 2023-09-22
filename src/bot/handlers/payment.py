@@ -6,7 +6,6 @@ from data.config import (SUBSCRIBE_AMOUNT_IN_USDT_TRC20,
                          USDT_TRC20_WALLET_ADDRESS)
 from database import transactions
 from filters.user_not_subscribed import UserNotSubscribedFilter
-from keyboards import inline as inline_keyboards
 from keyboards import reply as reply_keyboards
 from loader import dp
 from statesgroup import GetTxidFromUser
@@ -42,7 +41,6 @@ async def check_transaction(message: types.Message, state: FSMContext):
         await message.answer(
             text='Great, wait for the end of the transaction, '
                  'and I will notify you when the subscription is charged.',
-            reply_markup=await inline_keyboards.channels(),
         )
     else:
         await message.answer(
