@@ -9,7 +9,7 @@ async def channels() -> types.InlineKeyboardMarkup:
         keyboard.add(
             types.InlineKeyboardButton(
                 text=name,
-                url=private_channels[name]['url'],
+                url=private_channels[name]['invite_url'],
             )
         )
 
