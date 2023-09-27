@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 
-from aiogram import types
-from aiogram.dispatcher import FSMContext
+from aiogram import F, Router, types
+from aiogram.fsm.context import FSMContext
 from data.config import (SUBSCRIBE_AMOUNT_IN_USDT_TRC20,
                          USDT_TRC20_WALLET_ADDRESS)
 from database import transactions
 from filters.user_not_subscribed import UserNotSubscribedFilter
 from keyboards import reply as reply_keyboards
-from loader import dp
 from statesgroup import GetTxidFromUser
 from utils import tronscan_service
 
+payment_router = Router()
 
-@dp.message_handler(UserNotSubscribedFilter(), text='Make subscription')
+@payment_router.message(
+    UserNotSubscribedFilter(),
+    F.text=='Make subscription',
+)
 async def make_subscription(message: types.Message):
     await message.answer(
         text=f'To pay, use this <code>USDT TC20</code> wallet: <code>{USDT_TRC20_WALLET_ADDRESS}</code>.\n'
@@ -22,21 +25,28 @@ async def make_subscription(message: types.Message):
     )
    
     
-@dp.message_handler(UserNotSubscribedFilter(), text='Confirm transfer')
-async def confirm_transfer(message: types.Message):
-    await GetTxidFromUser.state.set()
+@payment_router.message(
+    UserNotSubscribedFilter(),
+    F.text=='Confirm transfer',
+)
+async def confirm_transfer(message: types.Message, state: FSMContext):
+    await state.set_state(GetTxidFromUser.state)
     await message.answer(
         text='Great, send me the transaction txid to verify the transfer.',
         reply_markup=types.ReplyKeyboardRemove(),
     )
 
     
-@dp.message_handler(UserNotSubscribedFilter(), state=GetTxidFromUser.state)
+@payment_router.message(
+    UserNotSubscribedFilter(),
+    GetTxidFromUser.state,
+)
 async def check_transaction(message: types.Message, state: FSMContext):
     transaction = await transactions.get(txid=message.text)
     
+    if message.text is None: return
     if transaction is None and tronscan_service.is_valid_transaction_hash(message.text):
-        await state.finish()
+        await state.clear()
         await transactions.create(message.text, message.from_user.id)
         await message.answer(
             text='Great, wait for the end of the transaction, '

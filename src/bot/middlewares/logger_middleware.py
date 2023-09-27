@@ -1,10 +1,19 @@
 # -*- coding: utf-8 -*-
 
-from aiogram import types
-from aiogram.dispatcher.middlewares import BaseMiddleware
+from collections.abc import Awaitable, Callable
+from typing import Any, Dict
+
+from aiogram import BaseMiddleware, types
+from aiogram.types import TelegramObject
 from loader import logger
 
 
 class UpdateLoggerMiddleware(BaseMiddleware):
-    async def on_process_update(self, update: types.Update, data: dict):
-        logger.info(update)
+    async def __call__(
+        self,
+        handler: Callable[[types.TelegramObject, Dict[str, Any]], Awaitable[Any]],
+        event: TelegramObject,
+        data: Dict[str, Any]
+    ) -> Any:
+        logger.info(event)
+        await handler(event, data)

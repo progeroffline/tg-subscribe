@@ -1,20 +1,31 @@
 # -*- coding: utf-8 -*-
 
-from aiogram import Dispatcher, executor
+import asyncio
+
 from database import \
     create_schema_if_not_exist as database_create_schema_if_not_exist
-from loader import dp, tasks_scheduler
+from handlers import (channels_join_requests_router,
+                      close_functionality_router, payment_router, start_router)
+from loader import bot, dp, tasks_scheduler
+from middlewares import CreateUserMiddleware, UpdateLoggerMiddleware
 
 
-async def on_startup(dp: Dispatcher):
-    import filters
-    import handlers
-    import middlewares
+async def on_startup():
+    dp.update.middleware(UpdateLoggerMiddleware())
+    dp.message.middleware(CreateUserMiddleware())
+
+    dp.include_routers(
+        start_router,
+        payment_router,
+        close_functionality_router,
+        channels_join_requests_router,
+    )
     
     await database_create_schema_if_not_exist()
 
     tasks_scheduler.start()
+    await dp.start_polling(bot)
 
     
 if __name__ == "__main__":
-    executor.start_polling(dp, on_startup=on_startup, skip_updates=True)
+    asyncio.run(on_startup())

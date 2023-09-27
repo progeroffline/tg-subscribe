@@ -1,10 +1,12 @@
 import os
 
-from aiogram import Bot, Dispatcher, types
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram import Bot, Dispatcher
+from aiogram.enums import ParseMode
+from aiogram.fsm.storage.memory import MemoryStorage
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from data.config import BOT_TOKEN
 from logzero import logfile, logger
+from middlewares import CreateUserMiddleware, UpdateLoggerMiddleware
 from utils import (decrease_subscription_days, kick_users_from_channels,
                    subscription_checker)
 
@@ -12,7 +14,7 @@ if not os.path.exists('logs/'):
     os.system('mkdir logs')
 logfile('logs/bot.log')
 
-bot = Bot(token=BOT_TOKEN, parse_mode=types.ParseMode.HTML)
+bot = Bot(token=BOT_TOKEN, parse_mode=ParseMode.HTML)
 storage = MemoryStorage()
 dp = Dispatcher(bot=bot, storage=storage)
 

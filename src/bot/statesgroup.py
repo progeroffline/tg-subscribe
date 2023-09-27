@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from aiogram.dispatcher.filters.state import State, StatesGroup
+from aiogram.fsm.state import State, StatesGroup
 
 
 class GetTxidFromUser(StatesGroup):
