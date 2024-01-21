@@ -5,12 +5,12 @@ from data.config import private_channels
 
 async def channels() -> types.InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
-    
+
     for name in private_channels.keys():
         builder.add(
             types.InlineKeyboardButton(
                 text=name,
-                url=private_channels[name]['invite_url'],
+                url=private_channels[name]["invite_url"],
             )
         )
 
