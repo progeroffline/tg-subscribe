@@ -10,6 +10,8 @@ class User:
     last_name: Optional[str]
     username: Optional[str]
     days_sub_end: str
+    balance: int
+    referrer_id: int
 
     @staticmethod
     def get_fields_for_sql_query():

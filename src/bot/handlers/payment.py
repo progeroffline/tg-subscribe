@@ -1,6 +1,6 @@
 from aiogram import F, Router, types
 from aiogram.fsm.context import FSMContext
-from data.config import (SUBSCRIBE_AMOUNT_IN_USDT_TRC20, USDT_TRC20_WALLET_ADDRESS)
+from data.config import SUBSCRIBE_AMOUNT_BY_PLANS, USDT_TRC20_WALLET_ADDRESS
 from database import transactions
 from keyboards import reply as reply_keyboards
 from statesgroup import GetTxidFromUser
@@ -14,7 +14,9 @@ payment_router = Router()
 async def make_subscription(message: types.Message):
     await message.answer(
         text=f"Choose subscription plan",
-        reply_markup=await reply_keyboards.subscription_termins(),
+        reply_markup=await reply_keyboards.subscription_termins(
+            SUBSCRIBE_AMOUNT_BY_PLANS.keys()
+        ),
     )
 
 
@@ -26,7 +28,7 @@ async def set_subscribtion_termin(message: types.Message, state: FSMContext):
     await state.set_data({"subscription_termin": termin})
     await message.answer(
         text=f"To pay, use this <code>USDT TC20</code> wallet: <code>{USDT_TRC20_WALLET_ADDRESS}</code>.\n"
-        f"Transfer {SUBSCRIBE_AMOUNT_IN_USDT_TRC20*termin} <code>USDT TRC20</code>.\n"
+        f"Transfer {SUBSCRIBE_AMOUNT_BY_PLANS[termin]} <code>USDT TRC20</code>.\n"
         "After submitting, click the Confirm button.",
         reply_markup=await reply_keyboards.confirm_transfer(),
     )

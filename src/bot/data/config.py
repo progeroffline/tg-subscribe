@@ -18,10 +18,18 @@ sqlite_schema_filepath = os.path.join(project_filepath, "db", schema_filename)
 
 USDT_TRC20_WALLET_ADDRESS = "TF8aSMqpwtniPN77wS2EZTTcUKaaJhyorb"
 
-# Price for 1 month
-SUBSCRIBE_AMOUNT_IN_USDT_TRC20 = 5
+# Key - count months
+# Value - subscribe amount
+# You can customise this dict
+SUBSCRIBE_AMOUNT_BY_PLANS = {
+    1: 5,
+    # 3: 15,
+    # 6: 30,
+    # 7: 31,
+}
 NUMBER_DAYS_FROM_ONE_PAYMENT = 30
 SUBSCRIBE_END_NOTIFICATION_DAYS = [7, 3, 1]
+REFERAL_REWARD = 5
 
 ADMINS_ID_LIST = [535327818]
 private_channels = {

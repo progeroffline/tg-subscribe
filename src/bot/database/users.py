@@ -65,7 +65,7 @@ async def create_if_not_exist(
                     INSERT INTO %s
                         %s
                     VALUES
-                        (%s, '%s', '%s', '%s', datetime('now'))
+                        (%s, '%s', '%s', '%s', datetime('now'), %s, %s)
                     ;
                 """
                 % (
@@ -75,6 +75,8 @@ async def create_if_not_exist(
                     firstname,
                     lastname,
                     username,
+                    0,
+                    0,
                 )
             )
             await connection.commit()
@@ -88,3 +90,43 @@ async def get_all() -> List[User]:
         rows = await cursor.fetchall()
 
         return [User(*row) for row in rows]
+
+
+async def update_referrer_id(
+    referrer_id: int,
+    to_database_id: Optional[int] = None,
+    to_telegram_id: Optional[int] = None,
+) -> None:
+    user = await get(to_database_id, to_telegram_id)
+    if user is None:
+        return
+
+    async with aiosqlite.connect(sqlite_database_filepath) as connection:
+        sql_query = "UPDATE %s SET referrer_id=%s WHERE id=%s" % (
+            User.get_table_name(),
+            referrer_id,
+            user.id,
+        )
+
+        await connection.execute(sql_query)
+        await connection.commit()
+
+
+async def increase_balance_by(
+    points: int,
+    database_id: Optional[int] = None,
+    telegram_id: Optional[int] = None,
+) -> None:
+    user = await get(database_id, telegram_id)
+    if user is None:
+        return
+
+    async with aiosqlite.connect(sqlite_database_filepath) as connection:
+        sql_query = "UPDATE %s SET balance=%s WHERE id=%s" % (
+            User.get_table_name(),
+            user.balance + points,
+            user.id,
+        )
+
+        await connection.execute(sql_query)
+        await connection.commit()

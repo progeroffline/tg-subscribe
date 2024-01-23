@@ -1,5 +1,7 @@
+from typing import Optional
+
 from aiogram import F, Router, types
-from aiogram.filters import CommandStart
+from aiogram.filters import CommandObject, CommandStart
 from database import users
 from filters.user_not_subscribed import UserNotSubscribedFilter
 from filters.user_subscribed import UserSubscribedFilter
@@ -27,7 +29,21 @@ async def start_for_subsribed_user(message: types.Message):
 
 @start_router.message(UserNotSubscribedFilter(), CommandStart())
 @start_router.message(UserNotSubscribedFilter(), F.text == "Back to main menu")
-async def start_for_not_subsribed_user(message: types.Message):
+async def start_for_not_subsribed_user(
+    message: types.Message, command: Optional[CommandObject] = None
+):
+    if (
+        command is not None
+        and command.args is not None
+        and command.args.isdigit()
+        and message.from_user is not None
+    ):
+        user = await users.get(telegram_id=message.from_user.id)
+        if user is not None and user.referrer_id == 0 and command.args.isdigit():
+            if user.id != int(command.args):
+                await users.update_referrer_id(
+                    referrer_id=int(command.args), to_database_id=user.id
+                )
     await message.answer(
         text="Hello. Subscribe to the bot to get access to the closed functionality.",
         reply_markup=await reply_keyboards.make_subscribtion(),

@@ -2,7 +2,7 @@ import re
 from typing import Dict
 
 from aiohttp import ClientSession
-from data.config import (SUBSCRIBE_AMOUNT_IN_USDT_TRC20, USDT_TRC20_WALLET_ADDRESS)
+from data.config import USDT_TRC20_WALLET_ADDRESS
 
 
 def is_valid_transaction_hash(txid: str) -> bool:
@@ -20,7 +20,9 @@ async def get_transaction_info(txid: str) -> Dict:
             return response
 
 
-async def check_transaction_for_correct_data(txid: str) -> bool:
+async def check_transaction_for_correct_data(
+    txid: str, subscription_amount: int
+) -> bool:
     transaction = await get_transaction_info(txid)
     transaction_status = transaction.get("contractRet")
     if transaction_status is None:
@@ -37,7 +39,7 @@ async def check_transaction_for_correct_data(txid: str) -> bool:
 
     if (
         transaction_to_wallet == USDT_TRC20_WALLET_ADDRESS
-        and transaction_amount >= SUBSCRIBE_AMOUNT_IN_USDT_TRC20
+        and transaction_amount >= subscription_amount
         and transaction_status == "SUCCESS"
     ):
         return True
