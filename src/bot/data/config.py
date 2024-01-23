@@ -31,7 +31,7 @@ NUMBER_DAYS_FROM_ONE_PAYMENT = 30
 SUBSCRIBE_END_NOTIFICATION_DAYS = [7, 3, 1]
 REFERAL_REWARD = 5
 
-ADMINS_ID_LIST = [535327818]
+ADMINS_ID_LIST = []
 private_channels = {
     "Channel 1": {"id": -100123456789, "invite_url": "https://t.me/+ABCDEFGHIJKL"},
 }

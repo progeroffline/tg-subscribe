@@ -1,10 +1,15 @@
 import asyncio
 
-from database import \
-    create_schema_if_not_exist as database_create_schema_if_not_exist
-from handlers import (admin_router, channels_join_requests_router,
-                      check_subscription_router, close_functionality_router,
-                      payment_router, referral_router, start_router)
+from database import create_schema_if_not_exist as database_create_schema_if_not_exist
+from handlers import (
+    admin_router,
+    channels_join_requests_router,
+    check_subscription_router,
+    close_functionality_router,
+    payment_router,
+    referral_router,
+    start_router,
+)
 from loader import bot, dp, tasks_scheduler
 from middlewares import CreateUserMiddleware, UpdateLoggerMiddleware
 
