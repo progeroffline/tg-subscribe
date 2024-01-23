@@ -1,4 +1,5 @@
 from .admin import admin_router
+from .balance import balance_router
 from .channels_join_requests import channels_join_requests_router
 from .check_subscription import check_subscription_router
 from .close_functionality import close_functionality_router

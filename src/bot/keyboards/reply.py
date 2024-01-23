@@ -6,6 +6,7 @@ from aiogram import types
 async def close_functionality() -> types.ReplyKeyboardMarkup:
     return types.ReplyKeyboardMarkup(
         keyboard=[
+            [types.KeyboardButton(text="Balance")],
             [types.KeyboardButton(text="Renew subscription")],
             [types.KeyboardButton(text="Show close functionality")],
             [types.KeyboardButton(text="Check subscription")],
@@ -18,6 +19,7 @@ async def close_functionality() -> types.ReplyKeyboardMarkup:
 async def make_subscribtion() -> types.ReplyKeyboardMarkup:
     return types.ReplyKeyboardMarkup(
         keyboard=[
+            [types.KeyboardButton(text="Balance")],
             [types.KeyboardButton(text="Make subscription")],
             [types.KeyboardButton(text="Check subscription")],
             [types.KeyboardButton(text="Referral link")],

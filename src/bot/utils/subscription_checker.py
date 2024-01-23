@@ -1,8 +1,11 @@
 import typing
 from datetime import datetime, timedelta
 
-from data.config import (NUMBER_DAYS_FROM_ONE_PAYMENT, REFERAL_REWARD,
-                         SUBSCRIBE_AMOUNT_BY_PLANS)
+from data.config import (
+    NUMBER_DAYS_FROM_ONE_PAYMENT,
+    REFERAL_REWARD,
+    SUBSCRIBE_AMOUNT_BY_PLANS,
+)
 from database import transactions, users
 from keyboards import reply
 from utils import tronscan_service
@@ -44,6 +47,7 @@ async def task(bot: "aiogram.Bot"):
             await users.increase_balance_by(REFERAL_REWARD, database_id=referer.id)
             await bot.send_message(
                 chat_id=referer.telegram_id,
-                text=f"Congratulations, you have received a reward of <code>{REFERAL_REWARD}</code> points"
-                + " for subscribing using your referral link.",
+                text=f"Congratulations, you have received a reward of <code>{REFERAL_REWARD}</code> points "
+                + "for subscribing using your referral link.\n\n"
+                + f"Now your balance: <code>{referer.balance + REFERAL_REWARD}</code>",
             )
