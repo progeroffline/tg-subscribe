@@ -15,6 +15,7 @@ async def task(bot: "aiogram.Bot"):
         sub_end_date = datetime.strptime(user.days_sub_end, "%Y-%m-%d %H:%M:%S")
 
         days_left = (sub_end_date - datetime_now).days + 1
+        print(days_left)
         if days_left in SUBSCRIBE_END_NOTIFICATION_DAYS:
             if days_left == 1:
                 await bot.send_message(

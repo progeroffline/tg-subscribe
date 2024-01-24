@@ -34,6 +34,8 @@ REFERAL_REWARD = 5
 ADMINS_ID_LIST = []
 private_channels = {
     "Channel 1": {"id": -100123456789, "invite_url": "https://t.me/+ABCDEFGHIJKL"},
+    "Channel 2": {"id": -100123456789, "invite_url": "https://t.me/+ABCDEFGHIJKL"},
+    "Channel 3": {"id": -100123456789, "invite_url": "https://t.me/+ABCDEFGHIJKL"},
 }
 
 """

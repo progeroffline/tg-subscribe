@@ -13,5 +13,6 @@ async def channels() -> types.InlineKeyboardMarkup:
                 url=private_channels[name]["invite_url"],
             )
         )
+    builder.adjust(1)
 
     return builder.as_markup(resize_keyboard=True)
