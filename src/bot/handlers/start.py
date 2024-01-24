@@ -2,6 +2,7 @@ from typing import Optional
 
 from aiogram import F, Router, types
 from aiogram.filters import CommandObject, CommandStart
+from aiogram.fsm.context import FSMContext
 from database import users
 from filters.user_not_subscribed import UserNotSubscribedFilter
 from filters.user_subscribed import UserSubscribedFilter
@@ -12,7 +13,8 @@ start_router = Router()
 
 @start_router.message(UserSubscribedFilter(), CommandStart())
 @start_router.message(UserSubscribedFilter(), F.text == "Back to main menu")
-async def start_for_subsribed_user(message: types.Message):
+async def start_for_subsribed_user(message: types.Message, state: FSMContext):
+    await state.clear()
     if message.from_user is None:
         return
     user = await users.get(telegram_id=message.from_user.id)
@@ -30,8 +32,9 @@ async def start_for_subsribed_user(message: types.Message):
 @start_router.message(UserNotSubscribedFilter(), CommandStart())
 @start_router.message(UserNotSubscribedFilter(), F.text == "Back to main menu")
 async def start_for_not_subsribed_user(
-    message: types.Message, command: Optional[CommandObject] = None
+    message: types.Message, state: FSMContext, command: Optional[CommandObject] = None
 ):
+    await state.clear()
     if (
         command is not None
         and command.args is not None
