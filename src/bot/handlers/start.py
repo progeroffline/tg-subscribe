@@ -6,14 +6,13 @@ from aiogram.fsm.context import FSMContext
 from database import users
 from filters.user_not_subscribed import UserNotSubscribedFilter
 from filters.user_subscribed import UserSubscribedFilter
-from keyboards import reply as reply_keyboards
+from keyboards import inline as inline_keyboard
 
 start_router = Router()
 
 
 @start_router.message(UserSubscribedFilter(), CommandStart())
-@start_router.message(UserSubscribedFilter(), F.text == "Back to main menu")
-async def start_for_subsribed_user(message: types.Message, state: FSMContext):
+async def start_for_subsribed_user_message(message: types.Message, state: FSMContext):
     await state.clear()
     if message.from_user is None:
         return
@@ -25,13 +24,33 @@ async def start_for_subsribed_user(message: types.Message, state: FSMContext):
         text="Hello.\n"
         f"Your subscription is active until <code>{user.days_sub_end}</code>.\n"
         "Do not miss the day of payment to always have access to closed functionality.",
-        reply_markup=await reply_keyboards.close_functionality(),
+        reply_markup=await inline_keyboard.close_functionality(),
+    )
+
+
+@start_router.callback_query(UserSubscribedFilter(), F.data == "back_to_main_menu")
+async def start_for_subsribed_user_callback(
+    call: types.CallbackQuery, state: FSMContext
+):
+    await state.clear()
+    if call.from_user is None:
+        return
+    user = await users.get(telegram_id=call.from_user.id)
+    if user is None:
+        return
+
+    if call.message is None:
+        return
+    await call.message.answer(
+        text="Hello.\n"
+        f"Your subscription is active until <code>{user.days_sub_end}</code>.\n"
+        "Do not miss the day of payment to always have access to closed functionality.",
+        reply_markup=await inline_keyboard.close_functionality(),
     )
 
 
 @start_router.message(UserNotSubscribedFilter(), CommandStart())
-@start_router.message(UserNotSubscribedFilter(), F.text == "Back to main menu")
-async def start_for_not_subsribed_user(
+async def start_for_not_subsribed_user_message(
     message: types.Message, state: FSMContext, command: Optional[CommandObject] = None
 ):
     await state.clear()
@@ -49,5 +68,21 @@ async def start_for_not_subsribed_user(
                 )
     await message.answer(
         text="Hello. Subscribe to the bot to get access to the closed functionality.",
-        reply_markup=await reply_keyboards.make_subscribtion(),
+        reply_markup=await inline_keyboard.make_subscribtion(),
     )
+
+
+@start_router.callback_query(UserNotSubscribedFilter(), F.data == "back_to_main_menu")
+async def start_for_not_subsribed_user_callback(
+    call: types.CallbackQuery,
+    state: FSMContext,
+):
+    await state.clear()
+
+    if call.message is None:
+        return
+    await call.message.answer(
+        text="Hello. Subscribe to the bot to get access to the closed functionality.",
+        reply_markup=await inline_keyboard.make_subscribtion(),
+    )
+    await call.answer()

@@ -4,12 +4,13 @@ from database import users
 balance_router = Router()
 
 
-@balance_router.message(F.text == "Balance")
-async def show_balance(message: types.Message):
-    if message.from_user is None:
-        return
-    user = await users.get(telegram_id=message.from_user.id)
+@balance_router.callback_query(F.data == "balance")
+async def show_balance(call: types.CallbackQuery):
+    user = await users.get(telegram_id=call.from_user.id)
     if user is None:
         return
 
-    await message.answer(text=f"Your balance: <code>{user.balance}</code>")
+    if call.message is None:
+        return
+    await call.message.answer(text=f"Your balance: <code>{user.balance}</code>")
+    await call.answer()

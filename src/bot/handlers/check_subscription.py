@@ -6,11 +6,11 @@ from database import users
 check_subscription_router = Router()
 
 
-@check_subscription_router.message(F.text == "Check subscription")
-async def check_subscription(message: types.Message):
-    if message.from_user is None:
+@check_subscription_router.callback_query(F.data == "check_subscription")
+async def check_subscription(call: types.CallbackQuery):
+    if call.message is None:
         return
-    user_database_record = await users.get(telegram_id=message.from_user.id)
+    user_database_record = await users.get(telegram_id=call.from_user.id)
     if user_database_record is None:
         return
 
@@ -21,14 +21,16 @@ async def check_subscription(message: types.Message):
 
     # User have subscription
     if datetime_now < sub_date_end:
-        await message.answer(
+        await call.message.answer(
             text="Your subscription is active until <code>%s</code>"
             % user_database_record.days_sub_end
         )
 
     # User don't have subscription
     elif datetime_now >= sub_date_end:
-        await message.answer(
+        await call.message.answer(
             text="Your subscription has expired <code>%s</code>"
             % user_database_record.days_sub_end
         )
+
+    await call.answer()
