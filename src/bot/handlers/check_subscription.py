@@ -2,6 +2,7 @@ from datetime import datetime
 
 from aiogram import F, Router, types
 from database import users
+from keyboards import inline as inline_keyboards
 
 check_subscription_router = Router()
 
@@ -21,16 +22,18 @@ async def check_subscription(call: types.CallbackQuery):
 
     # User have subscription
     if datetime_now < sub_date_end:
-        await call.message.answer(
+        await call.message.edit_text(
             text="Your subscription is active until <code>%s</code>"
-            % user_database_record.days_sub_end
+            % user_database_record.days_sub_end,
+            reply_markup=await inline_keyboards.back_to_main_menu(),
         )
 
     # User don't have subscription
     elif datetime_now >= sub_date_end:
-        await call.message.answer(
+        await call.message.edit_text(
             text="Your subscription has expired <code>%s</code>"
-            % user_database_record.days_sub_end
+            % user_database_record.days_sub_end,
+            reply_markup=await inline_keyboards.back_to_main_menu(),
         )
 
     await call.answer()

@@ -41,7 +41,7 @@ async def start_for_subsribed_user_callback(
 
     if call.message is None:
         return
-    await call.message.answer(
+    await call.message.edit_text(
         text="Hello.\n"
         f"Your subscription is active until <code>{user.days_sub_end}</code>.\n"
         "Do not miss the day of payment to always have access to closed functionality.",
@@ -81,7 +81,7 @@ async def start_for_not_subsribed_user_callback(
 
     if call.message is None:
         return
-    await call.message.answer(
+    await call.message.edit_text(
         text="Hello. Subscribe to the bot to get access to the closed functionality.",
         reply_markup=await inline_keyboard.make_subscribtion(),
     )

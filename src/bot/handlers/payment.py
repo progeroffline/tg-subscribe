@@ -13,7 +13,7 @@ payment_router = Router()
 async def make_subscription(call: types.CallbackQuery):
     if call.message is None:
         return
-    await call.message.answer(
+    await call.message.edit_text(
         text=f"Choose subscription plan",
         reply_markup=await inline_keyboards.subscription_termins(
             SUBSCRIBE_AMOUNT_BY_PLANS.keys()

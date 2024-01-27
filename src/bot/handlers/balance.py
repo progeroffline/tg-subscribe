@@ -1,5 +1,6 @@
 from aiogram import F, Router, types
 from database import users
+from keyboards import inline as inline_keyboards
 
 balance_router = Router()
 
@@ -12,5 +13,8 @@ async def show_balance(call: types.CallbackQuery):
 
     if call.message is None:
         return
-    await call.message.answer(text=f"Your balance: <code>{user.balance}</code>")
+    await call.message.edit_text(
+        text=f"Your balance: <code>{user.balance}</code>",
+        reply_markup=await inline_keyboards.back_to_main_menu(),
+    )
     await call.answer()
