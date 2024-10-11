@@ -1,5 +1,5 @@
 # Telegram Bot with Subscription Functionality 🤖
-
+###❗️Python version <= 3.11
 ***Documentation***:
  - 🇺🇸 [English](https://github.com/ProgerOffline/tg-subscribe/blob/main/README.md)
  - 🇺🇦 [Ukrainian](https://github.com/ProgerOffline/tg-subscribe/blob/main/README-ua.md)
